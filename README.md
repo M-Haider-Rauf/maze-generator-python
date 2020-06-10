@@ -4,7 +4,7 @@ So this is one of my favorite uses of backtracking... At it's core, this algorit
 be traversed, in a random manner. 
 
 # dependencies
-pygame
+## pygame
 for installing pygame open your command line and enter `pip install pygame`
 make sure both files are in same folder, and run "main.py"
 
