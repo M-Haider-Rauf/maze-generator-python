@@ -11,13 +11,14 @@ class Engine:
         # pygame init stuff
         pygame.init()
         pygame.display.set_mode((MAZE_WIDTH, MAZE_HEIGHT))
-        pygame.display.set_caption("Maze Generator by HaiderRauf69")
+        pygame.display.set_caption("Maze Generator by HaiderRauf")
         self.window: pygame.Surface = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
 
         self.running = True
         self.cells = [[0 for col in range(CELL_COLS)] for row in range(CELL_ROWS)]
         self.stack = []
+        # mark (0, 0) as visited and push to stack...
         self.stack.append((0, 0))
         self.cells[0][0] |= CELL_VISITED
         self.visited_cells = 1
@@ -80,7 +81,7 @@ class Engine:
                 self.visited_cells += 1
             else:
                 self.stack.pop()
-        self.clock.tick(60)
+        self.clock.tick(60) # cap FPS at 60.0
 
     def render(self):
         self.window.fill(CLR_BLACK)

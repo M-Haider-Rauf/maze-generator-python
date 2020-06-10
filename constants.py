@@ -1,10 +1,12 @@
 # Constants
+# Colors
 CLR_BLUE = (0, 0, 255, 255)
 CLR_GREEN = (0, 255, 0, 255)
 CLR_RED = (255, 0, 0, 255)
 CLR_WHITE = (255, 255, 255, 255)
 CLR_YELLOW = (255, 255, 0, 255)
 CLR_BLACK = (0, 0, 0, 255)
+CLR_VIOLET = (127, 0, 255, 255)
 
 CELL_SIZE = 15
 WALL_SIZE = 5
@@ -14,6 +16,8 @@ TOTAL_CELLS = CELL_COLS * CELL_ROWS
 MAZE_WIDTH = (CELL_SIZE + WALL_SIZE) * CELL_COLS + WALL_SIZE
 MAZE_HEIGHT = (CELL_SIZE + WALL_SIZE) * CELL_ROWS + WALL_SIZE
 
+# these are the bit masks for the cells...
+# I find them more natural than making a class for a trivial task like this
 NORTH_WALL = 1
 EAST_WALL = 2
 SOUTH_WALL = 4
@@ -26,7 +30,7 @@ DIR_EAST = 3
 DIR_WEST = 4
 
 CELL_CLR = CLR_RED
-CURSOR_CLR = CLR_WHITE
-PATH_CLR = CLR_BLUE
+CURSOR_CLR = CLR_BLUE
+PATH_CLR = CLR_YELLOW
 BORDER_CLR = CLR_RED
 WALL_CLR = CLR_BLACK
