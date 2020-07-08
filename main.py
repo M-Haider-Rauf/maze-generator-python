@@ -3,6 +3,7 @@
 # Started on 6 / 8 / 2020
 import pygame
 import random
+import time
 from constants import *
 
 
@@ -119,6 +120,7 @@ class Engine:
             self.handle_input()
             self.update()
             self.render()
+        pygame.image.save(self.window, "sc-{}.bmp".format(int(time.time())))
         pygame.quit()
 
 
