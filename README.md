@@ -6,6 +6,8 @@ I particualrly like this algorithm because it guarantees completeness and it's p
 visualize too. You can observe that the cursor will try to draw the longest path that it can and as long as it finds that its
 backed in a corner it'll backtrack to the last cell where it had a valid available path... The image of generated image is saved at exit.
 
+ [wiki algorithm link](https://en.wikipedia.org/wiki/Maze_generation_algorithm#Iterative_implementation)
+
 # dependencies
 pygame
 
