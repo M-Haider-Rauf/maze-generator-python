@@ -11,17 +11,18 @@ class Engine:
     def __init__(self):
         # pygame init stuff
         pygame.init()
-        pygame.display.set_mode((MAZE_WIDTH, MAZE_HEIGHT))
+        self.window: pygame.Surface = pygame.display.set_mode((MAZE_WIDTH, MAZE_HEIGHT))
         pygame.display.set_caption("Maze Generator by HaiderRauf")
-        self.window: pygame.Surface = pygame.display.get_surface()
         self.clock = pygame.time.Clock()
 
         self.running = True
         self.cells = [[0 for col in range(CELL_COLS)] for row in range(CELL_ROWS)]
         self.stack = []
         # mark (0, 0) as visited and push to stack...
-        self.stack.append((0, 0))
-        self.cells[0][0] |= CELL_VISITED
+        x = random.randint(0, CELL_COLS - 1)
+        y = random.randint(0, CELL_ROWS - 1)
+        self.stack.append((x, y))
+        self.cells[y][x] |= CELL_VISITED
         self.visited_cells = 1
         self.paused = False
 
@@ -82,7 +83,7 @@ class Engine:
                 self.visited_cells += 1
             else:
                 self.stack.pop()
-        self.clock.tick(60) # cap FPS at 60.0
+        self.clock.tick(60)  # cap FPS at 60.0
 
     def render(self):
         self.window.fill(CLR_BLACK)
@@ -111,16 +112,22 @@ class Engine:
                                                   y * (CELL_SIZE + WALL_SIZE) + WALL_SIZE, CELL_SIZE, CELL_SIZE))
 
                 self.draw_borders()
+                self.window.fill(PATH_CLR, (0 + WALL_SIZE, 0 * CELL_SIZE, CELL_SIZE, WALL_SIZE))
+                self.window.fill(PATH_CLR,
+                                 ((CELL_COLS - 1) * (CELL_SIZE + WALL_SIZE) + WALL_SIZE,
+                                  CELL_ROWS * (CELL_SIZE + WALL_SIZE),
+                                  CELL_SIZE, WALL_SIZE)
+                                 )
         # Drawing End
         pygame.display.flip()
 
     def main_loop(self):
-        print(self.window)
         while self.running:
             self.handle_input()
             self.update()
             self.render()
-        pygame.image.save(self.window, "sc-{}.bmp".format(int(time.time())))
+        if self.visited_cells == TOTAL_CELLS:
+            pygame.image.save(self.window, "sc-{}.bmp".format(int(time.time())))
         pygame.quit()
 
 
